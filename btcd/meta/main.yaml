@@ -1,0 +1,17 @@
+---
+
+dependencies:
+  - role: node/install
+    vars:
+      node_install_user:     "{{btcd_user}}"
+      node_install_url:      "{{btcd_url}}"
+      node_install_tar:      "{{btcd_tar}}"
+      node_install_tar_name: "{{btcd_tar_name}}"
+
+  - role: node/conf
+    vars:
+      node_type: "btcd"
+      node_conf_template: "btcd.conf.j2"
+      node_service_template: "btcd.service.j2"
+      node_data_dir: "{{btcd_data_dir}}"
+      node_log_dir: "{{btcd_log_dir}}"

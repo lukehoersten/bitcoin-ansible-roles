@@ -1,0 +1,3 @@
+---
+
+node_conf_dir: "/home/{{node_user}}/.{{node_type}}"

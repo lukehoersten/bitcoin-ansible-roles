@@ -1,0 +1,24 @@
+---
+
+- name: add node user
+  become: yes
+  user: name="{{node_install_user}}"
+
+- name: download node
+  become: yes
+  get_url:
+    url: "{{node_install_url}}"
+    dest: "/tmp/{{node_install_tar}}"
+
+- name: unarchive node
+  become: yes
+  unarchive:
+    remote_src: "yes"
+    src: "/tmp/{{node_install_tar}}"
+    dest: "/tmp"
+    creates: "/tmp/{{node_install_tar_name}}/"
+
+- name: install node
+  become: yes
+  shell: "install -m 0755 -o {{node_install_user}} -g {{node_install_user}} -t /usr/local/bin /tmp/{{node_install_tar_name}}/*"
+  changed_when: false

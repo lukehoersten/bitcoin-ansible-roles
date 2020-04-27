@@ -1,0 +1,24 @@
+---
+
+dependencies:
+  - role: node/install
+    vars:
+      node_install_user:     "{{lnd_user}}"
+      node_install_url:      "{{lnd_url}}"
+      node_install_tar:      "{{lnd_tar}}"
+      node_install_tar_name: "{{lnd_tar_name}}"
+
+  - role: node/install
+    vars:
+      node_install_user:     "{{lndconnect_user}}"
+      node_install_url:      "{{lndconnect_url}}"
+      node_install_tar:      "{{lndconnect_tar}}"
+      node_install_tar_name: "{{lndconnect_tar_name}}"
+
+  - role: node/conf
+    vars:
+      node_type: "lnd"
+      node_conf_template: "lnd.conf.j2"
+      node_service_template: "lnd.service.j2"
+      node_data_dir: "{{lnd_data_dir}}"
+      node_log_dir: "{{lnd_log_dir}}"

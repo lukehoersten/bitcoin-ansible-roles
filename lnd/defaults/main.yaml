@@ -1,0 +1,13 @@
+---
+
+lnd_user: "{{node_user}}"
+lnd_version: "v0.10.0-beta.rc5"
+lnd_tar_name: "lnd-linux-armv7-{{lnd_version}}"
+lnd_tar: "{{lnd_tar_name}}.tar.gz"
+lnd_url: "https://github.com/lightningnetwork/lnd/releases/download/{{lnd_version}}/{{lnd_tar}}"
+
+lndconnect_user: "{{node_user}}"
+lndconnect_version: "v0.2.0"
+lndconnect_tar_name: "lndconnect-linux-armv7-{{lndconnect_version}}"
+lndconnect_tar: "{{lndconnect_tar_name}}.tar.gz"
+lndconnect_url: "https://github.com/LN-Zap/lndconnect/releases/download/{{lndconnect_version}}/{{lndconnect_tar}}"
