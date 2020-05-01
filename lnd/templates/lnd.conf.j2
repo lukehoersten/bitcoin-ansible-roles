@@ -1,4 +1,6 @@
 [Application Options]
+externalip={{node_external_ip}}
+
 datadir={{lnd_data_dir}}
 logdir={{lnd_log_dir}}
 
@@ -7,9 +9,6 @@ alias={{lnd_alias}}
 
 tlsextradomain={{lnd_alias}}
 rpclisten=0.0.0.0:10009
-externalip={{lnd_external_ip}}
-
-debuglevel=trace
 
 [Bitcoin]
 bitcoin.mainnet=true

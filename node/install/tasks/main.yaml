@@ -4,17 +4,11 @@
   become: yes
   user: name="{{node_install_user}}"
 
-- name: download node
-  become: yes
-  get_url:
-    url: "{{node_install_url}}"
-    dest: "/tmp/{{node_install_tar}}"
-
 - name: unarchive node
   become: yes
   unarchive:
-    remote_src: "yes"
-    src: "/tmp/{{node_install_tar}}"
+    remote_src: yes
+    src: "{{node_install_url}}"
     dest: "/tmp"
     creates: "/tmp/{{node_install_tar_name}}/"
 
