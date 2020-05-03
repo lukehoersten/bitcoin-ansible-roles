@@ -14,5 +14,10 @@
 
 - name: install node
   become: yes
-  shell: "install -m 0755 -o {{node_install_user}} -g {{node_install_user}} -t /usr/local/bin /tmp/{{node_install_tar_name}}/*"
-  changed_when: false
+  copy:
+    src: "/tmp/{{node_install_tar_name}}/"
+    dest: "/usr/local/bin/"
+    remote_src: yes
+    owner: "root"
+    group: "root"
+    mode: "0755"

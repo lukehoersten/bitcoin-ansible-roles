@@ -20,7 +20,7 @@
     dest: "{{node_conf_dir}}/{{node_type}}.conf"
     owner: "{{node_user}}"
     group: "{{node_user}}"
-    mode: "0770"
+    mode: "0644"
   notify: restart node
 
 - name: install node service
