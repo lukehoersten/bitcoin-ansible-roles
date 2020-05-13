@@ -6,9 +6,18 @@ logdir={{bitcoind_log_dir}}
 debug=rpc
 
 server=1
-rpcssl=1
 rpcuser={{bitcoind_rpc_user}}
 rpcpassword={{bitcoind_rpc_pass}}
+
+zmqpubrawblock=tcp://127.0.0.1:28332
+zmqpubrawtx=tcp://127.0.0.1:28333
+
+# raspberry pi optimizations
+dbcache=100
+maxorphantx=10
+maxmempool=50
+maxconnections=40
+maxuploadtarget=5000
 
 txindex={{bitcoind_enable_txindex}}
 
