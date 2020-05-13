@@ -1,6 +1,6 @@
 ---
 
-bitcoind_user: "{{node_user}}"
+bitcoind_user: "bitcoin"
 bitcoind_version: "0.19.1"
 bitcoind_arch: "{{ansible_architecture}}"
 bitcoind_url: "https://bitcoin.org/bin/bitcoin-core-{{bitcoind_version}}/bitcoin-{{bitcoind_version}}-{{bitcoind_arch}}-linux-gnu.tar.gz"

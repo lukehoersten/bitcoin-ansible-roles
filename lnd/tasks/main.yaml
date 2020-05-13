@@ -1,0 +1,71 @@
+---
+
+- name: add lnd user
+  become: yes
+  user: name="{{lnd_user}}"
+
+- name: unarchive lnd
+  become: yes
+  unarchive:
+    remote_src: yes
+    src: "{{item.url}}"
+    dest: "/tmp"
+    creates: "/tmp/{{item.tar_name}}/"
+  loop:
+    - url: "{{lnd_url}}"
+      tar_name: "{{lnd_tar_name}}"
+    - url: "{{lndconnect_url}}"
+      tar_name: "{{lndconnect_tar_name}}"
+
+- name: install lnd
+  become: yes
+  copy:
+    src: "/tmp/{{item.tar_name}}/"
+    dest: "/usr/local/bin/{{item.bins}}"
+    remote_src: yes
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  loop:
+    - tar_name: "{{lnd_tar_name}}"
+      bins:
+        - "lnd"
+        - "lncli"
+    - tar_name: "{{lndconnect_tar_name}}"
+      bins:
+        - "lndconnect"
+
+- name: create lnd data dir
+  become: yes
+  file:
+    path: "{{item}}"
+    state: "directory"
+    owner: "{{lnd_user}}"
+    group: "{{lnd_user}}"
+    mode: "0770"
+  with_items:
+    - "{{lnd_data_dir}}"
+    - "{{lnd_log_dir}}"
+    - "{{lnd_conf_dir}}"
+
+- name: configure lnd
+  become: yes
+  template:
+    src: "lnd.conf.j2"
+    dest: "{{lnd_conf_dir}}/lnd.conf"
+    owner: "{{lnd_user}}"
+    group: "{{lnd_user}}"
+    mode: "0644"
+  notify: restart lnd
+
+- name: install lnd service
+  become: yes
+  template:
+    src: "lnd.service.j2"
+    dest: "/lib/systemd/system/lnd.service"
+    mode: "0644"
+  notify: restart lnd
+
+- name: ensure lnd is started
+  become: yes
+  systemd: service="lnd.service" enabled="yes" state="started" daemon_reload="yes"

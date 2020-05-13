@@ -1,9 +1,0 @@
----
-
-btcd_user: "{{node_user}}"
-btcd_version: "v0.20.1-beta"
-btcd_arch: "armv7"
-btcd_tar_name: "btcd-linux-{{btcd_arch}}-{{btcd_version}}"
-btcd_tar: "{{btcd_tar_name}}.tar.gz"
-btcd_url: "https://github.com/btcsuite/btcd/releases/download/{{btcd_version}}/{{btcd_tar}}"
-btcd_enable_txindex: true
