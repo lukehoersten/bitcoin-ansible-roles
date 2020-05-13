@@ -21,7 +21,7 @@
     owner: "root"
     group: "root"
     mode: "0755"
-  with_items:
+  loop:
     - "bitcoind"
     - "bitcoin-cli"
 
@@ -33,7 +33,7 @@
     owner: "{{bitcoind_user}}"
     group: "{{bitcoind_user}}"
     mode: "0770"
-  with_items:
+  loop:
     - "{{bitcoind_data_dir}}"
     - "{{bitcoind_log_dir}}"
     - "{{bitcoind_conf_dir}}"

@@ -43,7 +43,7 @@
     owner: "{{lnd_user}}"
     group: "{{lnd_user}}"
     mode: "0770"
-  with_items:
+  loop:
     - "{{lnd_data_dir}}"
     - "{{lnd_log_dir}}"
     - "{{lnd_conf_dir}}"
