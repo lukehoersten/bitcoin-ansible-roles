@@ -13,7 +13,7 @@
     - "{{node_log_dir}}"
     - "{{node_conf_dir}}"
 
-- name: install conf
+- name: configure node
   become: yes
   template:
     src: "{{node_conf_template}}"

@@ -1,0 +1,16 @@
+externalip={{node_external_ip}}
+uacomment={{bitcoind_comment}}
+
+datadir={{bitcoind_data_dir}}
+logdir={{bitcoind_log_dir}}
+debug=rpc
+
+server=1
+rpcssl=1
+rpcuser={{bitcoind_rpc_user}}
+rpcpassword={{bitcoind_rpc_pass}}
+
+txindex={{bitcoind_enable_txindex}}
+
+{% for node in bitcoind_add_node %}addnode={{node}}
+{% endfor %}

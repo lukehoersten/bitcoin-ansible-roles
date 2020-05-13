@@ -1,11 +1,10 @@
 [Unit]
-Description=lnd
-Wants={{lnd_bitcoin_node}}.service
-After={{lnd_bitcoin_node}}.service
+Description=bitcoind
+After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/lnd
-User={{lnd_user}}
+ExecStart=/usr/local/bin/bitcoind
+User={{bitcoind_user}}
 
 PrivateTmp=true
 ProtectSystem=full
