@@ -1,0 +1,18 @@
+[Unit]
+Description=Bitcoind Prometheus Exporter
+Wants=bitcoind.service
+After=bitcoind.service
+
+[Service]
+ExecStart=/usr/local/bin/bitcoind-prometheus-exporter.py
+User=prometheus
+Environment="BITCOIN_CONF_PATH={{bitcoind_prometheus_exporter_conf}}"
+
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target

@@ -38,15 +38,15 @@
 - name: create lnd data dir
   become: yes
   file:
-    path: "{{item}}"
+    path: "{{item.path}}"
     state: "directory"
     owner: "{{lnd_user}}"
     group: "{{lnd_user}}"
-    mode: "0770"
+    mode: "{{item.mode}}"
   loop:
-    - "{{lnd_data_dir}}"
-    - "{{lnd_log_dir}}"
-    - "{{lnd_conf_dir}}"
+    - { path: "{{lnd_data_dir}}", mode: "0750" }
+    - { path: "{{lnd_log_dir}}", mode: "0750" }
+    - { path: "{{lnd_conf_dir}}", mode: "0755" }
 
 - name: configure lnd
   become: yes

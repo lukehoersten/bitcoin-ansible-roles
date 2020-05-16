@@ -1,0 +1,5 @@
+---
+
+- name: restart service
+  become: yes
+  systemd: service="bitcoind-prometheus-exporter.service" state="restarted" daemon_reload="yes"

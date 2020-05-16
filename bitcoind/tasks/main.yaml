@@ -28,15 +28,15 @@
 - name: create bitcoind data dir
   become: yes
   file:
-    path: "{{item}}"
+    path: "{{item.path}}"
     state: "directory"
     owner: "{{bitcoind_user}}"
     group: "{{bitcoind_user}}"
-    mode: "0770"
+    mode: "{{item.mode}}"
   loop:
-    - "{{bitcoind_data_dir}}"
-    - "{{bitcoind_log_dir}}"
-    - "{{bitcoind_conf_dir}}"
+    - { path: "{{bitcoind_data_dir}}", mode: "0750" }
+    - { path: "{{bitcoind_log_dir}}", mode: "0750" }
+    - { path: "{{bitcoind_conf_dir}}", mode: "0755" }
 
 - name: configure bitcoind
   become: yes

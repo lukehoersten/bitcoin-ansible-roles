@@ -1,0 +1,45 @@
+---
+
+- name: apt-get bitcoind-prometheus-exporter install deps
+  become: yes
+  apt: name="python3-pip"
+
+- name: pip bitcoind-prometheus-exporter install deps
+  become: yes
+  pip: name="{{item}}"
+  loop:
+    - "riprova"
+    - "prometheus_client"
+    - "python-bitcoinlib"
+
+- name: unarchive bitcoind-prometheus-exporter
+  become: yes
+  unarchive:
+    remote_src: yes
+    src: "{{bitcoind_prometheus_exporter_url}}"
+    dest: "/tmp"
+    creates: "/tmp/{{bitcoind_prometheus_exporter_tar_name}}/"
+  notify: restart service
+
+- name: install bitcoind-prometheus-exporter
+  become: yes
+  copy:
+    src: "/tmp/{{bitcoind_prometheus_exporter_tar_name}}/bitcoind-monitor.py"
+    dest: "/usr/local/bin/bitcoind-prometheus-exporter.py"
+    remote_src: yes
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  changed_when: false
+
+- name: install bitcoind-prometheus-exporter service
+  become: yes
+  template:
+    src: "bitcoind-prometheus-exporter.service.j2"
+    dest: "/lib/systemd/system/bitcoind-prometheus-exporter.service"
+    mode: "0644"
+  notify: restart service
+
+- name: ensure bitcoind-prometheus-exporter service is started
+  become: yes
+  systemd: service="bitcoind-prometheus-exporter.service" enabled="yes" state="started" daemon_reload="yes"

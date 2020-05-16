@@ -1,0 +1,6 @@
+---
+
+bitcoind_prometheus_exporter_conf: "/home/bitcoin/.bitcoin/bitcoin.conf"
+bitcoind_prometheus_exporter_version: "0.5.0"
+bitcoind_prometheus_exporter_url: "https://github.com/jvstein/bitcoin-prometheus-exporter/archive/v{{bitcoind_prometheus_exporter_version}}.tar.gz"
+bitcoind_prometheus_exporter_tar_name: "bitcoin-prometheus-exporter-{{bitcoind_prometheus_exporter_version}}"
