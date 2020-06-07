@@ -4,7 +4,7 @@
   become: yes
   user: name="{{bitcoind_user}}"
 
-- name: unarchive bitcoind
+- name: download bitcoind
   become: yes
   unarchive:
     remote_src: yes
@@ -24,6 +24,7 @@
   loop:
     - "bitcoind"
     - "bitcoin-cli"
+  notify: restart bitcoind
 
 - name: create bitcoind data dir
   become: yes

@@ -1,7 +1,7 @@
 ---
 
 lnd_user: "{{node_user}}"
-lnd_version: "v0.10.0-beta"
+lnd_version: "v0.10.1-beta"
 lnd_arch: "armv7"
 lnd_tar_name: "lnd-linux-{{lnd_arch}}-{{lnd_version}}"
 lnd_tar: "{{lnd_tar_name}}.tar.gz"

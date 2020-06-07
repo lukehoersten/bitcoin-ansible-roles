@@ -3,9 +3,12 @@ uacomment={{bitcoind_comment}}
 
 datadir={{bitcoind_data_dir}}
 logdir={{bitcoind_log_dir}}
-debug=rpc
+
+disablewallet=1
+maxuploadtarget=5000
 
 server=1
+rpcallowip=127.0.0.1
 rpcuser={{bitcoind_rpc_user}}
 rpcpassword={{bitcoind_rpc_pass}}
 
