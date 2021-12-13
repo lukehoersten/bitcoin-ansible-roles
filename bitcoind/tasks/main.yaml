@@ -2,7 +2,7 @@
 
 - name: add bitcoind user
   become: yes
-  user: name="{{bitcoind_user}}"
+  user: name="{{bitcoind_user}}" shell="/bin/false" system="yes"
 
 - name: download bitcoind
   become: yes

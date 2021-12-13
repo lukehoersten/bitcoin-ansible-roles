@@ -2,7 +2,7 @@
 
 - name: add lnd user
   become: yes
-  user: name="{{lnd_user}}"
+  user: name="{{lnd_user}}" shell="/bin/false" system="yes"
 
 - name: download lnd
   become: yes
