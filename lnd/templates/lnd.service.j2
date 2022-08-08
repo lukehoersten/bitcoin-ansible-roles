@@ -4,6 +4,7 @@ Wants={{lnd_bitcoin_node}}.service
 After={{lnd_bitcoin_node}}.service
 
 [Service]
+Type=notify
 ExecStart=/usr/local/bin/lnd
 User={{lnd_user}}
 
