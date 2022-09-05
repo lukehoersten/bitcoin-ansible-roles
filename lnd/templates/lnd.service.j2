@@ -5,8 +5,18 @@ After={{lnd_bitcoin_node}}.service
 
 [Service]
 Type=notify
+
 ExecStart=/usr/local/bin/lnd
+ExecStop=/usr/local/bin/lncli stop
+
 User={{lnd_user}}
+Group={{lnd_user}}
+
+Restart=on-failure
+RestartSec=60
+
+TimeoutStartSec=1200
+TimeoutStopSec=3600
 
 PrivateTmp=true
 ProtectSystem=full
