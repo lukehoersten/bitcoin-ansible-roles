@@ -1,15 +1,15 @@
 ---
 
 lnd_user: "{{node_user}}"
-lnd_version: "v0.15.0-beta"
+lnd_version: "0.15.4-beta"
 lnd_arch: "arm64"
-lnd_tar_name: "lnd-linux-{{lnd_arch}}-{{lnd_version}}"
+lnd_tar_name: "lnd-linux-{{lnd_arch}}-v{{lnd_version}}"
 lnd_tar: "{{lnd_tar_name}}.tar.gz"
-lnd_url: "https://github.com/lightningnetwork/lnd/releases/download/{{lnd_version}}/{{lnd_tar}}"
+lnd_url: "https://github.com/lightningnetwork/lnd/releases/download/v{{lnd_version}}/{{lnd_tar}}"
 lnd_conf_dir: "/home/{{lnd_user}}/.lnd"
 
 lndconnect_user: "{{node_user}}"
-lndconnect_version: "v0.2.0"
-lndconnect_tar_name: "lndconnect-linux-{{lnd_arch}}-{{lndconnect_version}}"
+lndconnect_version: "0.2.0"
+lndconnect_tar_name: "lndconnect-linux-{{lnd_arch}}-v{{lndconnect_version}}"
 lndconnect_tar: "{{lndconnect_tar_name}}.tar.gz"
-lndconnect_url: "https://github.com/LN-Zap/lndconnect/releases/download/{{lndconnect_version}}/{{lndconnect_tar}}"
+lndconnect_url: "https://github.com/LN-Zap/lndconnect/releases/download/v{{lndconnect_version}}/{{lndconnect_tar}}"
