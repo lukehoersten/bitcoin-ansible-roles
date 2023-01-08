@@ -1,0 +1,3 @@
+#! /bin/bash
+
+xxd -ps -u -c 1000 $1

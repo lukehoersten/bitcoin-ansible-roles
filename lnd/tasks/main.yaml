@@ -20,17 +20,26 @@
 - name: install lnd
   become: yes
   copy:
-    src: "/tmp/{{item.tar}}/{{item.bin}}"
+    src: "{{item}}"
     dest: "/usr/local/bin/"
     remote_src: yes
     owner: "root"
     group: "root"
     mode: "0755"
   loop:
-    - { tar: "{{lnd_tar_name}}", bin: "lnd" }
-    - { tar: "{{lnd_tar_name}}", bin: "lncli" }
-    - { tar: "{{lndconnect_tar_name}}", bin: "lndconnect" }
+    - "/tmp/{{lnd_tar_name}}/lnd"
+    - "/tmp/{{lnd_tar_name}}/lndcli"
+    - "/tmp/{{lndconnect_tar_name}}/lndconnect"
   notify: restart lnd
+
+- name: install lnd-hex-macaroon script
+  become: yes
+  copy:
+    src: "lnd-hex-macaroon"
+    dest: "/usr/local/bin/"
+    owner: "root"
+    group: "root"
+    mode: "0755"
 
 - name: create lnd data dir
   become: yes
