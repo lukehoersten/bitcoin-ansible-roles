@@ -28,7 +28,7 @@
     mode: "0755"
   loop:
     - "/tmp/{{lnd_tar_name}}/lnd"
-    - "/tmp/{{lnd_tar_name}}/lndcli"
+    - "/tmp/{{lnd_tar_name}}/lncli"
     - "/tmp/{{lndconnect_tar_name}}/lndconnect"
   notify: restart lnd
 
