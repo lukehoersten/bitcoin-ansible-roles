@@ -6,7 +6,7 @@
 
 - name: pip bitcoind-prometheus-exporter install deps
   become: yes
-  pip: name="{{item}}"
+  pip: name="{{item}}" break_system_packages="true"
   loop:
     - "riprova"
     - "prometheus_client"
