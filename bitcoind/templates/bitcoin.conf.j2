@@ -29,6 +29,7 @@ zmqpubrawtx=tcp://127.0.0.1:28333
 deprecatedrpc=warnings
 
 txindex={{bitcoind_enable_txindex}}
+blockfilterindex={{bitcoind_enable_filterindex}}
 
 {% for node in bitcoind_add_node %}addnode={{node}}
 {% endfor %}
