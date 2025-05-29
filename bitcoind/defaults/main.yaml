@@ -7,3 +7,7 @@ bitcoind_arch: "{{ansible_architecture}}"
 bitcoind_url: "https://bitcoincore.org/bin/bitcoin-core-{{bitcoind_version}}/bitcoin-{{bitcoind_version}}-{{bitcoind_arch}}-linux-gnu.tar.gz"
 bitcoind_conf_dir: "/home/{{bitcoind_user}}/.bitcoin"
 bitcoind_enable_txindex: "1"
+bitcoind_add_node: []
+bitcoind_rpc_allow_ip: []
+bitcoind_rpc_bind: []
+bitcoind_enable_wallet: false
