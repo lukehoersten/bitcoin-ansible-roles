@@ -4,12 +4,18 @@ uacomment={{bitcoind_comment}}
 datadir={{bitcoind_data_dir}}
 logdir={{bitcoind_log_dir}}
 
-disablewallet=1
+#disablewallet=1
+wallet=default
 maxuploadtarget=4096
 dbcache=2048
 
 server=1
+rpcbind=127.0.0.1
+{% for ip in bitcoind_rpc_bind %}rpcbind={{ip}}
+{% endfor %}
 rpcallowip=127.0.0.1
+{% for ip in bitcoind_rpc_allow_ip %}rpcallowip={{ip}}
+{% endfor %}
 rpcuser={{bitcoind_rpc_user}}
 rpcpassword={{bitcoind_rpc_pass}}
 
