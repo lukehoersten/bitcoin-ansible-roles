@@ -4,11 +4,7 @@ uacomment={{bitcoind_comment}}
 datadir={{bitcoind_data_dir}}
 logdir={{bitcoind_log_dir}}
 
-{% if bitcoind_enable_wallet %}
-wallet=default
-{% else %}
-disablewallet=1
-{% endif %}
+disablewallet={{bitcoind_disable_wallet}}
 
 maxuploadtarget=4096
 dbcache=2048

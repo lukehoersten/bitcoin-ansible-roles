@@ -11,4 +11,4 @@ bitcoind_enable_filterindex: "1"
 bitcoind_add_node: []
 bitcoind_rpc_allow_ip: []
 bitcoind_rpc_bind: []
-bitcoind_enable_wallet: false
+bitcoind_disable_wallet: "1"
