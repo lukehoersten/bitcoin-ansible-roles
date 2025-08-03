@@ -3,7 +3,8 @@ Description=bitcoind
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/bitcoind
+ExecStart=/usr/local/bin/bitcoind{% if bitcoind_reindex %} -reindex{% endif %}
+
 User={{bitcoind_user}}
 
 PrivateTmp=true

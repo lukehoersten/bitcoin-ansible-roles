@@ -12,6 +12,10 @@
     dest: "/tmp"
     creates: "/tmp/bitcoin-{{bitcoind_version}}/"
 
+- name: apt install zram-tools to compress memory
+  become: yes
+  apt: name="zram-tools" state="latest"
+
 - name: install bitcoind
   become: yes
   copy:

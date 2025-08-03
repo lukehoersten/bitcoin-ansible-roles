@@ -6,9 +6,11 @@ bitcoind_version: "29.0"
 bitcoind_arch: "{{ansible_architecture}}"
 bitcoind_url: "https://bitcoincore.org/bin/bitcoin-core-{{bitcoind_version}}/bitcoin-{{bitcoind_version}}-{{bitcoind_arch}}-linux-gnu.tar.gz"
 bitcoind_conf_dir: "/home/{{bitcoind_user}}/.bitcoin"
-bitcoind_enable_txindex: "1"
+bitcoind_enable_txindex: "0"
 bitcoind_enable_filterindex: "1"
 bitcoind_add_node: []
 bitcoind_rpc_allow_ip: []
 bitcoind_rpc_bind: []
-bitcoind_disable_wallet: "1"
+bitcoind_reindex: false
+bitcoind_dbcache: "1536"
+bitcoind_comment: ""

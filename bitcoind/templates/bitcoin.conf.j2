@@ -1,13 +1,12 @@
-externalip={{node_external_ip}}
+externalip={{bitcoind_external_ip}}
 uacomment={{bitcoind_comment}}
 
 datadir={{bitcoind_data_dir}}
 logdir={{bitcoind_log_dir}}
 
-disablewallet={{bitcoind_disable_wallet}}
+maxuploadtarget=1024
+dbcache={{bitcoind_dbcache}}
 
-maxuploadtarget=4096
-dbcache=2048
 
 server=1
 rpcbind=127.0.0.1
@@ -16,8 +15,11 @@ rpcbind=127.0.0.1
 rpcallowip=127.0.0.1
 {% for ip in bitcoind_rpc_allow_ip %}rpcallowip={{ip}}
 {% endfor %}
+
+{% if bitcoind_rpc_user is defined %}
 rpcuser={{bitcoind_rpc_user}}
 rpcpassword={{bitcoind_rpc_pass}}
+{% endif %}
 
 zmqpubrawblock=tcp://127.0.0.1:28332
 zmqpubrawtx=tcp://127.0.0.1:28333
