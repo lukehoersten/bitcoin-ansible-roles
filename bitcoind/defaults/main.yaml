@@ -12,5 +12,6 @@ bitcoind_add_node: []
 bitcoind_rpc_allow_ip: []
 bitcoind_rpc_bind: []
 bitcoind_reindex: false
-bitcoind_dbcache: "1536"
+bitcoind_dbcache: "3072"
 bitcoind_comment: ""
+bitcoind_threads: "4"
