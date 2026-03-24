@@ -40,7 +40,6 @@
     mode: "{{item.mode}}"
   loop:
     - { path: "{{bitcoind_data_dir}}", mode: "0750" }
-    - { path: "{{bitcoind_log_dir}}", mode: "0750" }
     - { path: "{{bitcoind_conf_dir}}", mode: "0755" }
 
 - name: configure bitcoind

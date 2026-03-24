@@ -51,7 +51,6 @@
     mode: "{{item.mode}}"
   loop:
     - { path: "{{lnd_data_dir}}", mode: "0750" }
-    - { path: "{{lnd_log_dir}}", mode: "0750" }
     - { path: "{{lnd_conf_dir}}", mode: "0755" }
 
 - name: configure lnd
