@@ -2,7 +2,7 @@
 
 lnd_user: "{{node_user}}"
 # https://github.com/lightningnetwork/lnd/releases
-lnd_version: "0.18.5-beta"
+lnd_version: "0.20.1-beta"
 lnd_arch: "arm64"
 lnd_tar_name: "lnd-linux-{{lnd_arch}}-v{{lnd_version}}"
 lnd_tar: "{{lnd_tar_name}}.tar.gz"
