@@ -60,8 +60,9 @@
     dest: "{{lnd_conf_dir}}/lnd.conf"
     owner: "{{lnd_user}}"
     group: "{{lnd_user}}"
-    mode: "0644"
+    mode: "0600"
   notify: restart lnd
+  no_log: true
 
 - name: install lnd service
   become: yes

@@ -49,8 +49,9 @@
     dest: "{{bitcoind_conf_dir}}/bitcoin.conf"
     owner: "{{bitcoind_user}}"
     group: "{{bitcoind_user}}"
-    mode: "0644"
+    mode: "0600"
   notify: restart bitcoind
+  no_log: true
 
 - name: install bitcoind service
   become: yes
