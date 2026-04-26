@@ -1,5 +1,7 @@
 ---
 
+lnurld_version: "0bf1955"
+# https://github.com/yanascz/lnurld/commits
 lnurld_git: "https://github.com/yanascz/lnurld.git"
 lnurld_build_dir: "/tmp/lnurld"
-lnurld_srv_dir: "/var/www/build"
+lnurld_srv_dir: "{{build_srv_dir}}"

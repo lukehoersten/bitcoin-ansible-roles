@@ -16,16 +16,17 @@
   git:
     repo: "{{lnurld_git}}"
     dest: "{{lnurld_build_dir}}"
+    version: "{{lnurld_version}}"
 
 - name: check if build exists
   stat:
-    path: "{{lnurld_build_dir}}/lnurld"
+    path: "{{lnurld_srv_dir}}/lnurld-{{lnurld_version}}.tar.gz"
   register: build_file
 
 - name: build
   command: "go build"
   args:
-    chdir: "/tmp/lnurld/"
+    chdir: "{{lnurld_build_dir}}"
   when: not build_file.stat.exists
 
 - name: create build server dir
@@ -34,12 +35,11 @@
     path: "{{lnurld_srv_dir}}"
     mode: "0755"
     state: "directory"
-  when: not build_file.stat.exists
 
-- name: copy bin to build server dir
+- name: create gz archive of lnurld
   become: yes
-  copy:
-    remote_src: yes
-    src: "{{lnurld_build_dir}}/lnurld"
-    dest: "{{lnurld_srv_dir}}/lnurld"
+  archive:
+    path: "{{lnurld_build_dir}}/lnurld"
+    dest: "{{lnurld_srv_dir}}/lnurld-{{lnurld_version}}.tar.gz"
+    format: "gz"
   when: not build_file.stat.exists
