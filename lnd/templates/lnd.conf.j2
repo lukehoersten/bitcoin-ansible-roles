@@ -9,7 +9,7 @@ alias={{lnd_alias}}
 tlsextradomain={{lnd_alias}}
 listen=0.0.0.0:9735
 rpclisten=127.0.0.1:10009
-restlisten=127.0.0.1:8080
+restlisten={{ansible_facts['default_ipv4']['address']}}:8080
 
 [Bitcoin]
 bitcoin.mainnet=true
