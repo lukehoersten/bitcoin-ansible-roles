@@ -42,4 +42,7 @@
     path: "{{lnurld_build_dir}}/lnurld"
     dest: "{{lnurld_srv_dir}}/lnurld-{{lnurld_version}}.tar.gz"
     format: "gz"
+    # force a real tar for the single binary; the module otherwise gzips a lone
+    # file into a bare .gz that the server's unarchive can't extract.
+    force_archive: true
   when: not build_file.stat.exists
