@@ -1,11 +1,21 @@
 [Unit]
 Description=bitcoind
-After=network.target
+# network-online (not network): rpcbind to the host address fails with
+# getaddrinfo errors if bitcoind starts before addresses are configured
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 ExecStart=/usr/local/bin/bitcoind{% if bitcoind_reindex %} -reindex{% endif %}
 
 User={{bitcoind_user}}
+
+Restart=on-failure
+RestartSec=30
+
+# chainstate flush on shutdown can far exceed the 90s default; SIGKILL here
+# risks a slow replay or a reindex
+TimeoutStopSec=1800
 
 PrivateTmp=true
 ProtectSystem=full
