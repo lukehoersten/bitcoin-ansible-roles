@@ -49,7 +49,9 @@
     dest: "{{bitcoind_conf_dir}}/bitcoin.conf"
     owner: "{{bitcoind_user}}"
     group: "{{bitcoind_user}}"
-    mode: "0600"
+    # group-readable: the prometheus exporter reads rpc credentials from this
+    # file (its role adds the prometheus user to the bitcoin group)
+    mode: "0640"
   notify: restart bitcoind
   no_log: true
 

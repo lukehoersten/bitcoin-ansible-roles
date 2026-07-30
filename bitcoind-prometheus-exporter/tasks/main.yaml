@@ -12,6 +12,16 @@
     - "prometheus_client"
     - "python-bitcoinlib"
 
+# The exporter reads rpc credentials from bitcoin.conf, which the bitcoind
+# role keeps at 0640 bitcoin:bitcoin.
+- name: add prometheus user to the bitcoin group
+  become: yes
+  user:
+    name: "prometheus"
+    groups: "{{bitcoind_user | default('bitcoin')}}"
+    append: yes
+  notify: restart service
+
 - name: unarchive bitcoind-prometheus-exporter
   become: yes
   unarchive:
