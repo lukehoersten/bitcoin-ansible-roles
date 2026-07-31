@@ -8,9 +8,19 @@ lnd_tar_name: "lnd-linux-{{lnd_arch}}-v{{lnd_version}}"
 lnd_tar: "{{lnd_tar_name}}.tar.gz"
 lnd_url: "https://github.com/lightningnetwork/lnd/releases/download/v{{lnd_version}}/{{lnd_tar}}"
 lnd_conf_dir: "/home/{{lnd_user}}/.lnd"
+# Release tarball sha256 per arch, pinned from the signed
+# manifest-v<version>.txt on the github release page. Update when bumping
+# lnd_version, and verify the manifest signature while at it.
+lnd_sha256:
+  arm64: "013489343eebe8b0213b5f52fc7570e6f873f3f17974826cb94125ee1287d306"
+  amd64: "e01f755ba18e45a7b20f9fd645a328a250aae241e23b8c1eca06efeb2974570a"
 
 lndconnect_user: "{{node_user}}"
 lndconnect_version: "0.2.0"
 lndconnect_tar_name: "lndconnect-linux-{{lnd_arch}}-v{{lndconnect_version}}"
 lndconnect_tar: "{{lndconnect_tar_name}}.tar.gz"
 lndconnect_url: "https://github.com/LN-Zap/lndconnect/releases/download/v{{lndconnect_version}}/{{lndconnect_tar}}"
+# Upstream publishes no checksums; this is the sha256 of the v0.2.0 arm64
+# tarball, cross-checked against the binary in production since 2020.
+lndconnect_sha256:
+  arm64: "d9abcf75d2e284cde122a6df93bcbff0372c692b994cf02056136d854a7455a5"

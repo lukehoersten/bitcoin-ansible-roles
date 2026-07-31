@@ -4,18 +4,34 @@
   become: yes
   user: name="{{lnd_user}}" shell="/bin/false" system="yes"
 
+# Download and unarchive are split so the tarballs can be verified against
+# the pinned release checksums before anything is extracted or installed.
 - name: download lnd
   become: yes
-  unarchive:
-    remote_src: yes
-    src: "{{item.url}}"
-    dest: "/tmp"
-    creates: "/tmp/{{item.tar_name}}/"
+  get_url:
+    url: "{{item.url}}"
+    dest: "/tmp/{{item.tar_name}}.tar.gz"
+    checksum: "sha256:{{item.sha256}}"
   loop:
     - url: "{{lnd_url}}"
       tar_name: "{{lnd_tar_name}}"
+      sha256: "{{lnd_sha256[lnd_arch]}}"
     - url: "{{lndconnect_url}}"
       tar_name: "{{lndconnect_tar_name}}"
+      sha256: "{{lndconnect_sha256[lnd_arch]}}"
+  loop_control:
+    label: "{{item.tar_name}}"
+
+- name: unarchive lnd
+  become: yes
+  unarchive:
+    remote_src: yes
+    src: "/tmp/{{item}}.tar.gz"
+    dest: "/tmp"
+    creates: "/tmp/{{item}}/"
+  loop:
+    - "{{lnd_tar_name}}"
+    - "{{lndconnect_tar_name}}"
 
 - name: install lnd
   become: yes
