@@ -4,11 +4,20 @@
   become: yes
   user: name="{{bitcoind_user}}" shell="/bin/false" system="yes"
 
+# Download and unarchive are split so the tarball can be verified against
+# the pinned release checksum before anything is extracted or installed.
 - name: download bitcoind
+  become: yes
+  get_url:
+    url: "{{bitcoind_url}}"
+    dest: "/tmp/bitcoin-{{bitcoind_version}}-{{bitcoind_arch}}.tar.gz"
+    checksum: "sha256:{{bitcoind_sha256[bitcoind_arch]}}"
+
+- name: unarchive bitcoind
   become: yes
   unarchive:
     remote_src: yes
-    src: "{{bitcoind_url}}"
+    src: "/tmp/bitcoin-{{bitcoind_version}}-{{bitcoind_arch}}.tar.gz"
     dest: "/tmp"
     creates: "/tmp/bitcoin-{{bitcoind_version}}/"
 
