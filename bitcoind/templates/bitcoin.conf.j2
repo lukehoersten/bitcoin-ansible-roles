@@ -9,6 +9,9 @@ par={{bitcoind_threads}}
 checkblocks=6
 checklevel=0
 
+# Port mapping: ask the router (NAT-PMP/PCP) to open the p2p port.
+natpmp={{bitcoind_natpmp}}
+
 server=1
 rpcbind=127.0.0.1
 {% for ip in bitcoind_rpc_bind %}rpcbind={{ip}}

@@ -2,7 +2,7 @@
 
 bitcoind_user: "bitcoin"
 # https://bitcoincore.org/bin
-bitcoind_version: "31.0"
+bitcoind_version: "31.1"
 bitcoind_arch: "{{ansible_facts['architecture']}}"
 bitcoind_url: "https://bitcoincore.org/bin/bitcoin-core-{{bitcoind_version}}/bitcoin-{{bitcoind_version}}-{{bitcoind_arch}}-linux-gnu.tar.gz"
 # Release tarball sha256 per arch, pinned from
@@ -10,11 +10,15 @@ bitcoind_url: "https://bitcoincore.org/bin/bitcoin-core-{{bitcoind_version}}/bit
 # bumping bitcoind_version, and verify the SHA256SUMS gpg signature per
 # https://bitcoincore.org/en/download/ while at it.
 bitcoind_sha256:
-  aarch64: "4de1d568dedd48604f75132421bc0abeca432639589b49a3909c81db3a813112"
-  x86_64: "d3e4c58a35b1d0a97a457462c94f55501ad167c660c245cb1ffa565641c65074"
+  aarch64: "dcf1873f2208ba4f962f3398d47e154c39c0084be8f4553e05c940d0ace3d004"
+  x86_64: "b80d9c3e04da78fb6f0569685673418cf686fadba9042d926d13fb87ff503f9e"
 bitcoind_conf_dir: "/home/{{bitcoind_user}}/.bitcoin"
 bitcoind_enable_txindex: "0"
 bitcoind_enable_filterindex: "1"
+# Router port mapping via NAT-PMP/PCP. Default matches bitcoind's own default
+# (on since Core 28.0). Disable where the p2p port is forwarded manually. UPnP
+# is omitted: the official binaries ship without miniupnpc and warn on `upnp`.
+bitcoind_natpmp: "1"
 bitcoind_add_node: []
 bitcoind_rpc_allow_ip: []
 bitcoind_rpc_bind: []

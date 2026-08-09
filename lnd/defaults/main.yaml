@@ -2,7 +2,7 @@
 
 lnd_user: "{{node_user}}"
 # https://github.com/lightningnetwork/lnd/releases
-lnd_version: "0.20.1-beta"
+lnd_version: "0.20.2-beta"
 lnd_arch: "arm64"
 lnd_tar_name: "lnd-linux-{{lnd_arch}}-v{{lnd_version}}"
 lnd_tar: "{{lnd_tar_name}}.tar.gz"
@@ -12,8 +12,8 @@ lnd_conf_dir: "/home/{{lnd_user}}/.lnd"
 # manifest-v<version>.txt on the github release page. Update when bumping
 # lnd_version, and verify the manifest signature while at it.
 lnd_sha256:
-  arm64: "013489343eebe8b0213b5f52fc7570e6f873f3f17974826cb94125ee1287d306"
-  amd64: "e01f755ba18e45a7b20f9fd645a328a250aae241e23b8c1eca06efeb2974570a"
+  arm64: "caf8ac9d4169e492fb6c065cc1ac5624314247f4dff74c416b5ab5431d9caae1"
+  amd64: "bcec401ae34ad15fbd1970e9836ba8334a1a466bcfbf587dff6aae2a0c220206"
 
 lndconnect_user: "{{node_user}}"
 lndconnect_version: "0.2.0"
